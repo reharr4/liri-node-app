@@ -1,16 +1,27 @@
 require("dotenv").config();
 
-// gets keys from key file
+// vars
+var request = require("request");
+var fs = require("fs");
 var keys = require("./keys.js");
-var spotify = new spotify(keys.spotify);
+var Spotify = require("node-spotify-api");
+var Spotify = new Spotify(keys.spotify);
 
-
+// vars - user input
 var command = process.argv[2];
 var query = process.argv[3];
 
-var axios = require("axios");
+// execute function
+userInputs(command, query);
 
-axios.get("http://www.omdbapi.com/?t=" + movieQuery +"&y=&plot=short&apikey=trilogy").then(
+var movieThis = function(movieQuery) {
+// if user doesn't enter movie, default to Mr Nobody
+     if(movieQuery === undefined) {
+         movieQuery = "mr nobody";
+     }
+}
+
+axios.get("http://www.omdbapi.com/?t=" + movieQuery +"&y=&plot=short&apikey=trilogy")
     function(response) {
         console.log("Movie Title: " + );
         console.log("Year of release: " + );
@@ -20,14 +31,4 @@ axios.get("http://www.omdbapi.com/?t=" + movieQuery +"&y=&plot=short&apikey=tril
         console.log("Language: " + );
         console.log("Plot: " + );
         console.log("Actors: " + );
-    })
-    .catch(function(error) {
-        if (error.request) {
-
-        } else if (error.request) {
-            console.log(error.request);
-        } else {
-            console.log("Movie Title is Mr. Nobody");
-
-        }
-    })
+    }
