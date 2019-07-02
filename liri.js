@@ -12,14 +12,31 @@ var command = process.argv[2];
 var query = process.argv[3];
 
 // execute function
-userInputs(command, query);
+userInput(command, query);
 
-var movieThis = function(movieQuery) {
+function userInput(command, query) {
+    switch(command) {
+        case "concert-this": 
+        concertInfo(query);
+        break;
+        case "spotify-this-song":
+        songInfo(query);
+        break;
+        case "movie-this":
+        movieInfo(query);
+        break;
+        case "do-what-it-says":
+        someInfo();
+        break;
+    }
+
+}
+
 // if user doesn't enter movie, default to Mr Nobody
      if(movieQuery === undefined) {
          movieQuery = "mr nobody";
      }
-}
+
 
 axios.get("http://www.omdbapi.com/?t=" + movieQuery +"&y=&plot=short&apikey=trilogy")
     function(response) {
