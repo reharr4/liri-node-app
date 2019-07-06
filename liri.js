@@ -68,20 +68,25 @@ function concertThis(value) {
 function spotifyThis(value) {
     // if user doesn't enter a song, default to "The Sign" - Ace of Base
     if (value === undefined) {
-        value = "the sign";
+        value = "The Sign";
     }
-    Spotify.search({type: "track", query: value})
-    .then(function(response){
-        console.log(response);
-    })
-    .catch(function(err) {
-        console.log(err);
-    });
-    console.log("Artist(s): ");
-    console.log("Song name: ");
-    console.log("Preview from Spotify: ");
-    console.log("Album: ");
-        }
+    Spotify.request({ type: "track", query: value })
+        .then(function (response) {
+            var songs = data.tracks.items;
+            for (i = 0; i < songs.length; i++) {
+                console.log("Artist(s): " + response.data.artist);
+                console.log("Song name: " + response.data.Name);
+                console.log("Preview from Spotify: ");
+                console.log("Album: ");
+            }
+
+        })
+        .catch(function (err) {
+            console.log(err);
+        });
+
+};
+
 
 // // OMDB
 function movieThis(value) {
@@ -96,7 +101,7 @@ function movieThis(value) {
             console.log("Movie Title: " + response.data.Title);
             console.log("Year of release: " + response.data.Year);
             console.log("IMDB rating: " + response.data.imdbRating);
-            // console.log("Rotten Tomatoes rating: " + response.data.tomatoRotten);
+            console.log("Rotten Tomatoes rating: " + response.data.Ratings[1].Value);
             console.log("Country produced in: " + response.data.Country);
             console.log("Language: " + response.data.Language);
             console.log("Plot: " + response.data.Plot);
@@ -106,3 +111,13 @@ function movieThis(value) {
 };
 
 // Do What It Says
+fs.readFile("random.txt", "utf8", function(error, value) {
+    if(error) {
+        return console.log(error);
+    }
+    console.log(value);
+
+    var dataArr = value.split(",");
+    
+    console.log(dataArr);
+});
