@@ -1,47 +1,57 @@
 require("dotenv").config();
 
 // vars
-var request = require("request");
-var fs = require("fs");
-var axios = require("axios");
-var moment = require("moment");
-moment().format();
 var keys = require("./keys.js");
 var Spotify = require("node-spotify-api");
 var Spotify = new Spotify(keys.spotify);
 
+// moment for Date with Bands in Town
+var moment = require("moment");
+moment().format();
+
+// var request = require("request");
+
+// to read random.txt for do-what-it-says
+var fs = require("fs");
+
+// get info from APIs for movie- and concert-this
+var axios = require("axios");
+
+
 // vars - user input
-var command = process.argv[2];
-var query = process.argv[3];
+var command = process.argv[2]; //switch statment
+var query = process.argv[3]; //send song/movie/concert to respective functions
 
 // execute function
-userInput(command, query);
+// userInput(command, query);
 
-function userInput(command, query) {
+// function userInput(command, query) {
     switch(command) {
         case "concert-this": 
             concertThis(query);
          break;
         case "spotify-this-song":
-            songInfo(query);
+            songThis(query);
             break;
         case "movie-this":
-            movieInfo(query);
+            movieThis(query);
             break;
         case "do-what-it-says":
-            someInfo();
+            saysThis();
             break;
-    }
+    };
 
-};
+// };
 
 // Bands in Town
 function concertThis(query){
     axios.get("https://rest.bandsintown.com/artists/" + query + "/events?app_id=codingbootcamp").then(
         function (response){
             for (var i = 0; i < response.data.length; i++) {
-                var dateTime = response.data[i].dateTime;
-                var dateArr = dateTime.split("T");
+                // dateTime response saved into variable
+                var datetime = response.data[i].datetime;
+                // split date and time in response
+                var dateArr = datetime.split('T');
 
                 var concertResults =
                     "---------------------------------------" +
