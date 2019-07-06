@@ -31,7 +31,7 @@ var query = process.argv[3]; //send song/movie/concert to respective functions
             concertThis(query);
          break;
         case "spotify-this-song":
-            songThis(query);
+            spotifyThis(query);
             break;
         case "movie-this":
             movieThis(query);
@@ -64,32 +64,37 @@ function concertThis(query){
         .catch(function (error){
             console.log(error);
         });
-    }
+    };
 
 
 // // Spotify
-// axios.get("https://api.spotify.com/song/" + song);
+// function spotifyThis(query) {
+//     axios.get("https://api.spotify.com/song/" + query).then(
+//         function(response){
 //     console.log("Artist(s): ");
 //     console.log("Song name: ");
 //     console.log("Preview from Spotify: ");
 //     console.log("Album: ");
+//         }
+//     )};
 
 // // OMDB
-// function movieInfo(query){
-// // if user doesn't enter movie, default to Mr Nobody
-//      if(query === undefined) {
-//          query = "mr nobody";
-//          console.log("If you haven't watched 'Mr. Nobody,' then you should: http://www.imdb.com/title/tt0485947/", "\nIt's on Netflix!")
-//      }
-// axios.get("http://www.omdbapi.com/?t=" + movieQuery +"&y=&plot=short&apikey=trilogy")
-//     function(response) {
-//         console.log("Movie Title: ");
-//         console.log("Year of release: ");
-//         console.log("IMDB rating: ");
-//         console.log("Rotten Tomatoes release: ");
-//         console.log("Country produced in: ");
-//         console.log("Language: ");
-//         console.log("Plot: ");
-//         console.log("Actors: ");
-//     }
-// }
+function movieThis(query){
+// if user doesn't enter movie, default to Mr Nobody
+     if(query === undefined) {
+         query = "mr nobody";
+         console.log("If you haven't watched 'Mr. Nobody,' then you should: http://www.imdb.com/title/tt0485947/");
+         console.log("\nIt's on Netflix!");
+     }
+axios.get("http://www.omdbapi.com/?t=" + query +"&y=&plot=short&apikey=trilogy").then(
+    function(response) {
+        console.log("Movie Title: " + response.data.Title);
+        console.log("Year of release: " + response.data.Year);
+        console.log("IMDB rating: " + response.data.imdbRating);
+        console.log("Rotten Tomatoes rating: " + response.data.tomatoRotten);
+        console.log("Country produced in: " + response.data.Country);
+        console.log("Language: " + response.data.Language);
+        console.log("Plot: " + response.data.Plot);
+        console.log("Actors: " + response.data.Actors);
+    }
+)}
