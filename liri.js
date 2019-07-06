@@ -57,7 +57,7 @@ function concertThis(query){
                     "---------------------------------------" +
                     "\nVenue Name: " + response.data[i].venue.name +
                     "\nVenue Location: " + response.data[i].venue.city +
-                    "\nDate of Event: " + moment(dateArr[0], "MM-DD-YYYY");
+                    "\nDate of Event: " + moment(dateArr[0]).format("MM-DD-YYYY");
                     console.log(concertResults);
             }
         })
