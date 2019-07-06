@@ -20,33 +20,30 @@ var axios = require("axios");
 
 // vars - user input
 var command = process.argv[2]; //switch statment
-var query = process.argv[3]; //send song/movie/concert to respective functions
+var value = process.argv[3]; //send song/movie/concert to respective functions
 
-// execute function
-// userInput(command, query);
 
-// function userInput(command, query) {
-    switch(command) {
-        case "concert-this": 
-            concertThis(query);
-         break;
-        case "spotify-this-song":
-            spotifyThis(query);
-            break;
-        case "movie-this":
-            movieThis(query);
-            break;
-        case "do-what-it-says":
-            saysThis();
-            break;
-    };
+switch (command) {
+    case "concert-this":
+        concertThis(value);
+        break;
+    case "spotify-this-song":
+        spotifyThis(value);
+        break;
+    case "movie-this":
+        movieThis(value);
+        break;
+    case "do-what-it-says":
+        saysThis();
+        break;
+};
 
 // };
 
 // Bands in Town
-function concertThis(query){
-    axios.get("https://rest.bandsintown.com/artists/" + query + "/events?app_id=codingbootcamp").then(
-        function (response){
+function concertThis(value) {
+    axios.get("https://rest.bandsintown.com/artists/" + value + "/events?app_id=codingbootcamp").then(
+        function (response) {
             for (var i = 0; i < response.data.length; i++) {
                 // dateTime response saved into variable
                 var datetime = response.data[i].datetime;
@@ -58,43 +55,54 @@ function concertThis(query){
                     "\nVenue Name: " + response.data[i].venue.name +
                     "\nVenue Location: " + response.data[i].venue.city +
                     "\nDate of Event: " + moment(dateArr[0]).format("MM-DD-YYYY");
-                    console.log(concertResults);
+                console.log(concertResults);
             }
         })
-        .catch(function (error){
+        .catch(function (error) {
             console.log(error);
         });
-    };
+};
 
 
 // // Spotify
-// function spotifyThis(query) {
-//     axios.get("https://api.spotify.com/song/" + query).then(
-//         function(response){
-//     console.log("Artist(s): ");
-//     console.log("Song name: ");
-//     console.log("Preview from Spotify: ");
-//     console.log("Album: ");
-//         }
-//     )};
+function spotifyThis(value) {
+    // if user doesn't enter a song, default to "The Sign" - Ace of Base
+    if (value === undefined) {
+        value = "the sign";
+    }
+    Spotify.search({type: "track", query: value})
+    .then(function(response){
+        console.log(response);
+    })
+    .catch(function(err) {
+        console.log(err);
+    });
+    console.log("Artist(s): ");
+    console.log("Song name: ");
+    console.log("Preview from Spotify: ");
+    console.log("Album: ");
+        }
 
 // // OMDB
-function movieThis(query){
-// if user doesn't enter movie, default to Mr Nobody
-     if(query === undefined) {
-         query = "mr nobody";
-         console.log("If you haven't watched 'Mr. Nobody,' then you should: http://www.imdb.com/title/tt0485947/");
-         console.log("\nIt's on Netflix!");
-     }
-axios.get("http://www.omdbapi.com/?t=" + query +"&y=&plot=short&apikey=trilogy").then(
-    function(response) {
-        console.log("Movie Title: " + response.data.Title);
-        console.log("Year of release: " + response.data.Year);
-        console.log("IMDB rating: " + response.data.imdbRating);
-        console.log("Rotten Tomatoes rating: " + response.data.tomatoRotten);
-        console.log("Country produced in: " + response.data.Country);
-        console.log("Language: " + response.data.Language);
-        console.log("Plot: " + response.data.Plot);
-        console.log("Actors: " + response.data.Actors);
+function movieThis(value) {
+    // if user doesn't enter movie, default to Mr Nobody
+    if (value === undefined) {
+        value = "mr nobody";
+        console.log("\nIf you haven't watched 'Mr. Nobody,' then you should: http://www.imdb.com/title/tt0485947/");
+        console.log("It's on Netflix!");
     }
-)}
+    axios.get("http://www.omdbapi.com/?t=" + value + "&y=&plot=short&apikey=trilogy").then(
+        function (response) {
+            console.log("Movie Title: " + response.data.Title);
+            console.log("Year of release: " + response.data.Year);
+            console.log("IMDB rating: " + response.data.imdbRating);
+            // console.log("Rotten Tomatoes rating: " + response.data.tomatoRotten);
+            console.log("Country produced in: " + response.data.Country);
+            console.log("Language: " + response.data.Language);
+            console.log("Plot: " + response.data.Plot);
+            console.log("Actors: " + response.data.Actors);
+        }
+    )
+};
+
+// Do What It Says
