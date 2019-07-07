@@ -18,18 +18,18 @@ Those commands are:
 # How to Use LIRI
 
 ## Step-by-step Instructions
-1. 1 Open your terminal, is Bash
-1. 2 Navigate to the folder that contains the file titled liri.js
-1. 3 Depending on the command you run, the output will differ.
+1. Open your terminal, is Bash
+1. Navigate to the folder that contains the file titled liri.js
+1. Depending on the command you run, the output will differ.
     * Example 1. Run concert-this command
     <br>
         node liri.js concert-this <"name of band or artist">
         <br>
         Output: The terminal will display a list of all events and locations where the artist or band will perform.
         It can result in multiple records. The system will also log the results to the log.txt file.
-        <!-- Screenshot -->
+        [concert-this screenshot](https://raw.githubusercontent.com/reharr4/liri-node-app/master/screenshots/concert-this.jpg)
         <br>
-    <li>Example 2. Run movie-this command
+    * Example 2. Run movie-this command
     <br>
         node liri.js movie-this <"name of movie">
         <br>
@@ -38,34 +38,34 @@ Those commands are:
         <br>
         [movie-this screenshot](https://raw.githubusercontent.com/reharr4/liri-node-app/master/screenshots/movie-this.jpg)
         <br>
-    <li>Example 3. Run spotify-this-song command
+    * Example 3. Run spotify-this-song command
     <br>
         node liri.js spotify-this-song <"name of song">
         <br>
         Output: The terminal will display a list of information associated with the song. 
         It can result in multiple records. The system will also log the results to the log.txt file.
-        <!-- screenshot -->
+        [spotify-this-song](https://raw.githubusercontent.com/reharr4/liri-node-app/master/screenshots/spotify-this.jpg)
         <br>
-    <li>Example 4. Run do-what-it-says command
+    * Example 4. Run do-what-it-says command
     <br>
         node liri.js do-what-it-says
         <br>
         Output: The terminal will display and perform the command listed in the random.txt file.
-        <!-- screenshot -->
+        [do screnshot](https://raw.githubusercontent.com/reharr4/liri-node-app/master/screenshots/do%20screenshot.jpg)
         <br>
     
 # Techonologies Used
 <hr>
-* Javascript
-* Node.js
-* Node packages:
+1. Javascript
+1. Node.js
+1. Node packages:
     * Node-Spotify-API
     * Request
     * Axios
     * Moment
     * DotEnv
-* APIs Used
+1. APIs Used
     * Bands In Town
     * OMDB
-* Git
-* Github
+1. Git
+1. Github
