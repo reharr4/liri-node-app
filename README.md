@@ -18,10 +18,10 @@ Those commands are:
 # How to Use LIRI
 
 ## Step-by-step Instructions
-<ul>1. Open your terminal, is Bash
-<ul>2. Navigate to the folder that contains the file titled liri.js
-<ul>3. Depending on the command you run, the output will differ.
-    <li>Example 1. Run concert-this command
+1. 1 Open your terminal, is Bash
+1. 2 Navigate to the folder that contains the file titled liri.js
+1. 3 Depending on the command you run, the output will differ.
+    * Example 1. Run concert-this command
     <br>
         node liri.js concert-this <"name of band or artist">
         <br>
@@ -36,7 +36,7 @@ Those commands are:
         Output: The terminal will display information associated with the movie.
         The system will also log the results to the log.txt file.
         <br>
-        ![movie-this screenshot](../liri-node-app/screenshots/movie-this.jpg)
+        [movie-this screenshot](../liri-node-app/screenshots/movie-this.jpg)
         <br>
     <li>Example 3. Run spotify-this-song command
     <br>
@@ -54,19 +54,18 @@ Those commands are:
         <!-- screenshot -->
         <br>
     
-
 # Techonologies Used
 <hr>
-<li>Javascript
-<li>Node.js
-<li>Node packages:
-    <li>Node-Spotify-API
-    <li>Request
-    <li>Axios
-    <li>Moment
-    <li>DotEnv
-<li>APIs Used
-    <li>Bands In Town
-    <li>OMDB
-<li>Git
-<li>Github
+* Javascript
+* Node.js
+* Node packages:
+    * Node-Spotify-API
+    * Request
+    * Axios
+    * Moment
+    * DotEnv
+* APIs Used
+    * Bands In Town
+    * OMDB
+* Git
+* Github
