@@ -2,14 +2,12 @@ require("dotenv").config();
 
 // vars
 var keys = require("./keys.js");
-var Spotify = require("node-spotify-api");
-var Spotify = new Spotify(keys.spotify);
+var spotify = require("node-spotify-api");
+var spotify = new Spotify(keys.spotify);
 
 // moment for Date with Bands in Town
 var moment = require("moment");
 moment().format();
-
-// var request = require("request");
 
 // to read random.txt for do-what-it-says
 var fs = require("fs");
@@ -65,26 +63,27 @@ function concertThis(value) {
 
 
 // // Spotify
-function spotifyThis(value) {
+function spotifyThis() {
     // if user doesn't enter a song, default to "The Sign" - Ace of Base
     if (value === undefined) {
         value = "The Sign";
     }
-    Spotify.request({ type: "track", query: value })
+    spotify.search({ type: "track", query: value })
         .then(function (response) {
-            var songs = data.tracks.items;
-            for (i = 0; i < songs.length; i++) {
-                console.log("Artist(s): " + response.data.artist);
-                console.log("Song name: " + response.data.Name);
-                console.log("Preview from Spotify: ");
-                console.log("Album: ");
-            }
+            for (i = 0; i < 5; i++) {
+                var spotifyResults =
+                "---------------------------" +
+                "\nArtist(s): " + response.tracks.items[i].artists[0].name +
+                "\nSong name: " + response.tracks.items[i].name +
+                "\nAlbum: " + response.tracks.items[i].album.name +
+                "\nPreview from Spotify: " + response.tracks.items[i].preview_url;
 
+            console.log(spotifyResults);
+            }
         })
         .catch(function (err) {
             console.log(err);
         });
-
 };
 
 
@@ -111,13 +110,13 @@ function movieThis(value) {
 };
 
 // Do What It Says
-fs.readFile("random.txt", "utf8", function(error, value) {
-    if(error) {
-        return console.log(error);
-    }
-    console.log(value);
+function saysThis() {
 
-    var dataArr = value.split(",");
-    
-    console.log(dataArr);
-});
+    fs.readFile("random.txt", "utf8", function (error, data) {
+        if (error) {
+            return console.log(error);
+        }
+        var dataArr = data.split(",");
+        spotifyThis(dataArr[0], dataArr[1]);
+    });
+}
