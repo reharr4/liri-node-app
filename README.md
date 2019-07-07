@@ -35,7 +35,8 @@ Those commands are:
         <br>
         Output: The terminal will display information associated with the movie.
         The system will also log the results to the log.txt file.
-        ![Alt text](desktop/liri-node-app/screenshots/movies-this.jpg?raw=true)
+        <br>
+        ![Alt text](../liri-node-app/screenshots/movie-this.jpg)
         <br>
     <li>Example 3. Run spotify-this-song command
     <br>
